@@ -1,0 +1,101 @@
+
+services:
+  db:
+    image: postgres:13
+    env_file:
+    - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB} 
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    command: ["postgres", "-c", "log_statement=all"]
+
+  backend:
+    build: 
+      context: .
+      dockerfile: backend/Dockerfile
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_SERVER: db
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB}
+      SECRET_KEY: ${SECRET_KEY}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+
+  asistente_restaurante:
+    build:
+      context: .
+      dockerfile: asistente_restaurante/Dockerfile
+    env_file:
+    - .env
+    command: uvicorn asistente_restaurante.app:app --host 0.0.0.0 --port 8001
+    volumes:
+      - ./asistente_restaurante:/app/asistente_restaurante
+    ports:
+      - "8001:8001"
+    depends_on:
+      db:
+        condition: service_healthy  
+      backend:
+        condition: service_started
+    environment:
+      AZURE_OPENAI_KEY: ${AZURE_OPENAI_KEY}
+      AZURE_OPENAI_ENDPOINT: ${AZURE_OPENAI_ENDPOINT}
+      AZURE_OPENAI_DEPLOYMENT: ${AZURE_OPENAI_DEPLOYMENT}
+      AZURE_OPENAI_API_VERSION: ${AZURE_OPENAI_API_VERSION}
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: ${POSTGRES_DB}
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./frontend/.env  
+    environment:
+      - NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL}
+      - NEXT_PUBLIC_AI_CHAT_BASE_URL=${NEXT_PUBLIC_AI_CHAT_BASE_URL}
+      - NEXT_PUBLIC_API_AUTH_LOGIN=${NEXT_PUBLIC_API_AUTH_LOGIN}
+      - NEXT_PUBLIC_API_AUTH_REGISTER=${NEXT_PUBLIC_API_AUTH_REGISTER}
+      - NEXT_PUBLIC_API_AUTH_LOGOUT=${NEXT_PUBLIC_API_AUTH_LOGOUT}
+      - NEXT_PUBLIC_API_USER_PROFILE=${NEXT_PUBLIC_API_USER_PROFILE}
+      - NEXT_PUBLIC_API_USER_HEALTH=${NEXT_PUBLIC_API_USER_HEALTH}
+      - NEXT_PUBLIC_API_RESTAURANTS=${NEXT_PUBLIC_API_RESTAURANTS}
+      - NEXT_PUBLIC_API_DISHES=${NEXT_PUBLIC_API_DISHES}
+      - NEXT_PUBLIC_API_CHAT=${NEXT_PUBLIC_API_CHAT}
+    volumes:
+      - /app/node_modules
+    depends_on:
+      backend:
+        condition: service_started  
+      asistente_restaurante:
+        condition: service_started
+    restart: unless-stopped
+
+
+volumes:
+  postgres_data:

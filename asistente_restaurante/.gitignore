@@ -1,0 +1,65 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+
+# Build output
+dist/
+build/
+.next/
+out/
+
+
+# IDEs y editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# SO - Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+*.pid
+*.seed
+*.pid.lock
+
+# Test coverage
+coverage/
+*.lcov
+
+# Python (si usas FastAPI)
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.venv/
+venv/
+
+# Docker
+*.orig
+docker-compose.override.yml
+
+# Git
+*.swp
+*.bak
+*.tmp
+*.old
+
+# Others
+*.tgz
+*.gz
+*.zip
+*.tar
+*.log
+
+# Next.js / React
+.eslintcache
