@@ -14,8 +14,8 @@ export function Footer() {
             <Link href="/" className="flex items-center space-x-3 group">
               <div className="relative">
                 <Image
-                  src="/images/NutriAI-logo.jpeg"
-                  alt="NutriAI"
+                  src="/images/MANA2-logo.jpeg"
+                  alt="MANA2"
                   width={40}
                   height={40}
                   className="rounded-full transition-transform group-hover:scale-110 shadow-md"
@@ -23,7 +23,7 @@ export function Footer() {
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 opacity-0 group-hover:opacity-20 transition-opacity"></div>
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
-                NutriAI
+                MANA2
               </span>
             </Link>
             <p className="text-sm text-gray-400">Tu plataforma para descubrir alimentación saludable y sostenible.</p>
@@ -98,8 +98,8 @@ export function Footer() {
             <ul className="space-y-2">
               <li className="flex items-center space-x-2">
                 <Mail className="h-5 w-5 text-gray-400" />
-                <a href="mailto:info@NutriAI.com" className="text-gray-400 hover:text-green-400 transition-colors">
-                  info@NutriAI.com
+                <a href="mailto:info@MANA2.com" className="text-gray-400 hover:text-green-400 transition-colors">
+                  info@MANA2.com
                 </a>
               </li>
               <li className="flex items-center space-x-2">
@@ -114,7 +114,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-gray-200 mt-12 pt-8 text-center space-y-4">
-          <Image src="/images/NutriAI-logo.jpeg" alt="NutriAI" width={48} height={48} className="mx-auto rounded-full" />
+          <Image src="/images/MANA2-logo.jpeg" alt="MANA2" width={48} height={48} className="mx-auto rounded-full" />
           <div className="space-y-1">
             <p className="text-sm text-gray-600 font-medium">Maná Fruit & Healthy food, ABC & CÍA. LTDA.</p>
             <p className="text-sm text-gray-500">© 2025 [CHO]; Labs Todos los derechos reservados.</p>

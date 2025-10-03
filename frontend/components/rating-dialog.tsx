@@ -62,7 +62,7 @@ export function RatingDialog({ isOpen, onOpenChange, userId }: RatingDialogProps
       if (response.ok) {
         toast({
           title: "¡Gracias por tu calificación! 🎉",
-          description: "Tu opinión nos ayuda a mejorar tu experiencia en NutriAI.",
+          description: "Tu opinión nos ayuda a mejorar tu experiencia en MANA2.",
           variant: "default",
         })
         onOpenChange(false) // Close dialog on success
@@ -93,7 +93,7 @@ export function RatingDialog({ isOpen, onOpenChange, userId }: RatingDialogProps
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-gray-900">Califica tu experiencia</DialogTitle>
           <DialogDescription className="text-gray-600 mt-2">
-            ¿Cómo fue tu experiencia en NutriAI? ¡Tu opinión es muy importante!
+            ¿Cómo fue tu experiencia en MANA2? ¡Tu opinión es muy importante!
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">

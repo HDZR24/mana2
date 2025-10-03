@@ -235,7 +235,7 @@ export function AIChatWidget() {
 
             const welcomeMessage: Message = {
               id: "welcome",
-              text: `¡Hola ${userData.full_name}! 👋\n\nSoy MarIA, tu asistente de alimentación saludable de NutriAI.${conditionsText}\n\n¿En qué puedo ayudarte hoy?`,
+              text: `¡Hola ${userData.full_name}! 👋\n\nSoy MarIA, tu asistente de alimentación saludable de MANA2.${conditionsText}\n\n¿En qué puedo ayudarte hoy?`,
               isBot: true,
               timestamp: new Date(),
               suggestions: [

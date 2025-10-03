@@ -129,8 +129,8 @@ export default function LoginPage() {
             <CardHeader className="text-center bg-gradient-to-r from-green-600 to-emerald-600 text-white p-8 rounded-t-lg">
               <div className="mb-4">
                 <Image
-                  src="/images/NutriAI-logo.jpeg"
-                  alt="NutriAI"
+                  src="/images/MANA2-logo.jpeg"
+                  alt="MANA2"
                   width={60}
                   height={60}
                   className="mx-auto rounded-full shadow-lg"

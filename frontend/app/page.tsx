@@ -124,8 +124,8 @@ export default function HomePage() {
             <div className="animate-bounce">
               <div className="relative inline-block">
                 <Image
-                  src="/images/NutriAI-logo.jpeg"
-                  alt="NutriAI"
+                  src="/images/MANA2-logo.jpeg"
+                  alt="MANA2"
                   width={120}
                   height={120}
                   className="mx-auto rounded-full shadow-2xl"
@@ -140,7 +140,7 @@ export default function HomePage() {
                 <span className="block bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
                   Saludable
                 </span>
-                con NutriAI
+                con MANA2
               </h1>
               <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
                 Restaurantes especializados en comida saludable para diabéticos, hipertensos y personas con obesidad
@@ -171,12 +171,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* What is NutriAI Section */}
+      {/* What is MANA2 Section */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-4 mb-16">
             <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-              ¿Qué es NutriAI?
+              ¿Qué es MANA2?
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Comida Saludable con menú adicional para Diabéticos, Hipertensos y/u Obesos.
@@ -355,8 +355,8 @@ export default function HomePage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
           <div className="animate-bounce">
             <Image
-              src="/images/NutriAI-logo.jpeg"
-              alt="NutriAI"
+              src="/images/MANA2-logo.jpeg"
+              alt="MANA2"
               width={200}
               height={80}
               className="mx-auto rounded-full shadow-2xl"

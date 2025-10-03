@@ -330,7 +330,7 @@ export default function MedicalProfileRegistrationPage(): ReactElement {
         localStorage.setItem("medicalProfileCompleted", "true")
         localStorage.setItem(
           "medicalProfileSuccessMessage",
-          "Turista, comensal, usuario(a), gracias por su dedicación al llenar este formulario. Lo haces para brindarle auto-ayudas para su tratamiento de diabetes, mientras disfruta de experiencias gastrosaludables, ecoturismo y sana recreación a través de la plataforma digital NutriAI con alarmas, notificaciones y mucho más. 👏 Le espera una experiencia gastrosaludable digna y agradable para Diabético(a).",
+          "Turista, comensal, usuario(a), gracias por su dedicación al llenar este formulario. Lo haces para brindarle auto-ayudas para su tratamiento de diabetes, mientras disfruta de experiencias gastrosaludables, ecoturismo y sana recreación a través de la plataforma digital MANA2 con alarmas, notificaciones y mucho más. 👏 Le espera una experiencia gastrosaludable digna y agradable para Diabético(a).",
         )
 
         // Redirect to home page

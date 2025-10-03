@@ -270,14 +270,14 @@ export default function RegisterPage() {
             <CardHeader className="text-center bg-gradient-to-r from-green-600 to-emerald-600 text-white p-8">
               <div className="mb-4">
                 <Image
-                  src="/images/NutriAI-logo.jpeg"
-                  alt="NutriAI"
+                  src="/images/MANA2-logo.jpeg"
+                  alt="MANA2"
                   width={60}
                   height={60}
                   className="mx-auto rounded-full shadow-lg"
                 />
               </div>
-              <CardTitle className="text-3xl font-bold">Crea tu cuenta en NutriAI</CardTitle>
+              <CardTitle className="text-3xl font-bold">Crea tu cuenta en MANA2</CardTitle>
               <CardDescription className="text-green-100 text-lg">
                 {currentStep === 1
                   ? "Completa tus datos personales básicos"

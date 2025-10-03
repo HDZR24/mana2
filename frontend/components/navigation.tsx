@@ -38,8 +38,8 @@ export function Navigation({ currentPage }: NavigationProps) {
             <Link href="/" className="flex items-center space-x-3 group">
               <div className="relative">
                 <Image
-                  src="/images/NutriAI-logo.jpeg"
-                  alt="NutriAI"
+                  src="/images/MANA2-logo.jpeg"
+                  alt="MANA2"
                   width={40}
                   height={40}
                   className="rounded-full transition-transform group-hover:scale-110 shadow-md"
@@ -47,7 +47,7 @@ export function Navigation({ currentPage }: NavigationProps) {
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 opacity-0 group-hover:opacity-20 transition-opacity"></div>
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-                NutriAI
+                MANA2
               </span>
             </Link>
 

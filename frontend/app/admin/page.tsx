@@ -174,7 +174,7 @@ export default function AdminDashboardPage() {
         <div className="max-w-7xl mx-auto">
           <div className="mb-8">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Panel de Administración</h1>
-            <p className="text-gray-600">Gestión de usuarios del sistema NutriAI</p>
+            <p className="text-gray-600">Gestión de usuarios del sistema MANA2</p>
           </div>
 
           <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
