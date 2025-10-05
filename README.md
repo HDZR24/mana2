@@ -62,7 +62,7 @@ asistente_restaurante/
 ### Variables de Entorno Backend
 ```env
 # Database Configuration
-DATABASE_URL=postgresql://user:password@localhost:5432/nutriai
+DATABASE_URL=postgresql://user:password@localhost:5432/mana
 SECRET_KEY=tu-clave-secreta-aqui
 AZURE_OPENAI_KEY=tu-clave-azure-openai
 AZURE_OPENAI_ENDPOINT=tu-endpoint-azure
@@ -97,8 +97,8 @@ MAX_TOKENS=2048
 
 1. Clonar el repositorio:
 ```bash
-git clone https://github.com/yourusername/nutriai.git
-cd nutriai
+git clone https://github.com/yourusername/mana.git
+cd mana
 ```
 
 2. Configurar Backend:
@@ -190,5 +190,5 @@ Si tienes preguntas sobre este proyecto:
 - Hernan Zuluaga – [hernandavid4224@outlook.com](mailto:hernandavid4224@outlook.com)
 - Owen Tovar – [owentovar07@gmail.com](mailto:owentovar07@gmail.com)  
 
-Repositorio: [https://github.com/HDZR24/NutriAI](https://github.com/HDZR24/NutriAI)
+Repositorio: [https://github.com/HDZR24/mana](https://github.com/HDZR24/mana)
 
