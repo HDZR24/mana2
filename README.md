@@ -1,6 +1,5 @@
-# NutriAI - Asistente Nutricional Inteligente
+# MANA - Asistente Nutricional Inteligente
 
-![NutriAI Homepage](./images/NutriAI.png)
 
 Un sistema integral para la gestión de necesidades dietéticas, búsqueda de restaurantes y recomendaciones nutricionales personalizadas para pacientes con diabetes en Cartagena, Colombia, potenciado por Inteligencia Artificial.
 
