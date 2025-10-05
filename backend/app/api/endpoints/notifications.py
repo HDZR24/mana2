@@ -5,8 +5,7 @@ from app.schemas.notification import MedicationAlarmCreate, MedicationAlarm, Med
 from app.crud.notification import (
     create_medication_alarm,
     get_medication_alarms_by_user,
-    delete_medication_alarm,
-    calculate_next_alarm_time
+    delete_medication_alarm
 )
 from app.core.security import get_current_user
 from app.models.user import User
@@ -27,16 +26,7 @@ def get_alarms(
     current_user: User = Depends(get_current_user)
 ):
     alarms = get_medication_alarms_by_user(db, current_user.id)
-    
-    # Actualizar tiempos de próxima alarma
-    updated_alarms = []
-    for alarm in alarms:
-        alarm.next_alarm_time = calculate_next_alarm_time(
-            alarm.start_time, alarm.frequency_hours
-        )
-        updated_alarms.append(alarm)
-    
-    return {"alarms": updated_alarms}
+    return {"alarms": alarms}  # ← Solo devuelve las alarmas, sin recalcular
 
 @router.delete("/alarms/{alarm_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_alarm(

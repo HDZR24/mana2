@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from datetime import time
+from datetime import time, datetime
 from typing import List, Optional
 from pydantic import Field, validator
 
@@ -18,7 +18,7 @@ class MedicationAlarmCreate(BaseModel):
 class MedicationAlarm(MedicationAlarmCreate):
     id: int
     user_id: int
-    next_alarm_time: Optional[time] = None  # Calculado en el backend
+    next_alarm_time: datetime  # Cambiado de Optional[time] a datetime
     
     class Config:
         from_attributes = True

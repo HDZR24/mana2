@@ -1,3 +1,4 @@
+from app.models.chat_message import ChatMessage
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.models.notification import MedicationAlarm 
