@@ -286,16 +286,18 @@ export function UserMenu() {
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator className="my-3" />
-          <DropdownMenuItem
-            onClick={() => router.push("/profile")}
-            className="cursor-pointer py-3 px-3 rounded-lg hover:bg-green-50 transition-colors border border-transparent hover:border-green-100"
-          >
-            <User className="mr-3 h-5 w-5 text-green-600" />
-            <div className="flex flex-col">
-              <span className="font-semibold text-gray-900">Mi Perfil</span>
-              <span className="text-xs text-gray-500">Gestionar toda mi información</span>
-            </div>
-          </DropdownMenuItem>
+          {!user.is_superuser && (
+            <DropdownMenuItem
+              onClick={() => router.push("/profile")}
+              className="cursor-pointer py-3 px-3 rounded-lg hover:bg-green-50 transition-colors border border-transparent hover:border-green-100"
+            >
+              <User className="mr-3 h-5 w-5 text-green-600" />
+              <div className="flex flex-col">
+                <span className="font-semibold text-gray-900">Mi Perfil</span>
+                <span className="text-xs text-gray-500">Gestionar toda mi información</span>
+              </div>
+            </DropdownMenuItem>
+          )}
           <DropdownMenuItem
             onClick={() => router.push("/profile/settings")}
             className="cursor-pointer py-3 px-3 rounded-lg hover:bg-green-50 transition-colors border border-transparent hover:border-green-100"
