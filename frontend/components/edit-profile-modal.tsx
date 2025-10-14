@@ -34,10 +34,14 @@ interface UserProfile {
 
 interface EditProfileModalProps {
   profile: UserProfile
-  onProfileUpdateAction: (updatedProfile: UserProfile) => void
+  // support both prop names for backwards compatibility
+  onProfileUpdate?: (updatedProfile: UserProfile) => void
+  onProfileUpdateAction?: (updatedProfile: UserProfile) => void
 }
 
-export function EditProfileModal({ profile, onProfileUpdateAction }: EditProfileModalProps) {
+export function EditProfileModal({ profile, onProfileUpdate, onProfileUpdateAction }: EditProfileModalProps) {
+  // prefer onProfileUpdate (parent uses this), fall back to onProfileUpdateAction
+  const profileUpdateCallback = onProfileUpdate ?? onProfileUpdateAction ?? (() => {})
   const [isOpen, setIsOpen] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -197,7 +201,11 @@ export function EditProfileModal({ profile, onProfileUpdateAction }: EditProfile
 
         if (profileResponse.ok) {
           const updatedProfile = await profileResponse.json()
-          onProfileUpdateAction(updatedProfile)
+          try {
+            profileUpdateCallback(updatedProfile)
+          } catch (cbErr) {
+            console.error("Error calling profile update callback:", cbErr)
+          }
           setSuccess(true)
 
           // Close modal after success
