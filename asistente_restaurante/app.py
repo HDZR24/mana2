@@ -4,19 +4,16 @@ from psycopg2.extras import RealDictCursor
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from openai import AzureOpenAI
+from openai import AzureOpenAI, OpenAI
 from dotenv import load_dotenv
 
 # Cargar variables de entorno
 load_dotenv()
 
-# Inicializar cliente de Azure OpenAI
-client = AzureOpenAI(
-    api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
-    azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
-    api_key=os.getenv("AZURE_OPENAI_KEY")
-)
-DEPLOYMENT_NAME = os.getenv("AZURE_OPENAI_DEPLOYMENT")
+# Inicializar cliente de OpenAI (no Azure)
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+MODEL_NAME = os.getenv("OPENAI_MODEL", "gpt-4o-mini")  # o el modelo que prefrieran usar
+
 
 # Inicializar FastAPI
 app = FastAPI()
@@ -173,14 +170,14 @@ Sé clara, amable y breve en tus respuestas. Recuerda siempre guiar la conversac
     messages.append({"role": "user", "content": user_input})
 
     try:
-        # Llamar al modelo de Azure OpenAI
         response = client.chat.completions.create(
-            model=DEPLOYMENT_NAME,
+            model=MODEL_NAME,
             messages=messages,
             temperature=0.3,
             max_tokens=200
         )
         assistant_reply = response.choices[0].message.content
+
 
         # Guardar conversación en la base de datos
         with get_db_connection() as conn:
