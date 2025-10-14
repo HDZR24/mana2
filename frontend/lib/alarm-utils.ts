@@ -35,18 +35,55 @@ export function calculateNextAlarmTimeAndStatus(alarm: Alarm): { formattedTime: 
   try {
     const now = new Date();
     
-    // Convertir UTC string a Date object (fecha base 1970-01-01)
-    const utcDate = new Date(`1970-01-01T${alarm.next_alarm_time}Z`);
-    
-    // Crear fecha local combinando la fecha actual con la hora UTC convertida
-    const localAlarmDate = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate(),
-      utcDate.getHours(),
-      utcDate.getMinutes(),
-      utcDate.getSeconds()
-    );
+    // Parse next_alarm_time robustly: support
+    // - time-only strings like "05:52:00"
+    // - full ISO datetimes like "2025-10-13T05:52:00" (with or without timezone)
+    const s = alarm.next_alarm_time
+
+    if (!s || typeof s !== "string") {
+      console.error("next_alarm_time missing or invalid type:", s)
+      return { formattedTime: "Fecha inválida", status: "Error" }
+    }
+
+    let utcDate: Date | null = null
+    const timeOnlyRegex = /^\d{2}:\d{2}(:\d{2})?$/
+    const isoNoTZRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?$/
+
+    if (timeOnlyRegex.test(s)) {
+      // treat as UTC time on a base date
+      utcDate = new Date(`1970-01-01T${s}Z`)
+    } else if (isoNoTZRegex.test(s)) {
+      // ISO datetime without timezone — assume it's UTC and append 'Z'
+      utcDate = new Date(s + "Z")
+    } else {
+      // Try to parse directly (covers ISO with timezone or other formats)
+      const parsed = new Date(s)
+      if (!isNaN(parsed.getTime())) {
+        utcDate = parsed
+      }
+    }
+
+    if (!utcDate || isNaN(utcDate.getTime())) {
+      console.error("Invalid next_alarm_time:", alarm.next_alarm_time)
+      return { formattedTime: "Fecha inválida", status: "Error" }
+    }
+
+    // Crear fecha local dependiendo de si se recibió solo la hora o una fecha completa
+    let localAlarmDate: Date
+    if (timeOnlyRegex.test(s)) {
+      // For time-only values, use today's date but interpret the time as UTC
+      localAlarmDate = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        utcDate.getUTCHours(),
+        utcDate.getUTCMinutes(),
+        utcDate.getUTCSeconds(),
+      )
+    } else {
+      // For full datetimes use the parsed date (it already represents an absolute instant).
+      localAlarmDate = utcDate
+    }
 
     // Verificar si es válido
     if (isNaN(localAlarmDate.getTime())) {
